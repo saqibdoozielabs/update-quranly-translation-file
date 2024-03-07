@@ -25,7 +25,10 @@ fs.readFile(`${language}.txt`, "utf8", (err, queryTextFileData) => {
     let newDataArray = [];
 
     for (let i = 0; i < translations.length; i++) {
-      const getText = translations[i]["text"];
+      let getText = translations[i]["text"];
+
+      // Remove <sup> tag and its contents
+      getText = getText.replace(/<sup[^>]*>.*?<\/sup>/gi, "");
 
       newDataArray.push(getText);
     }
@@ -44,24 +47,12 @@ fs.readFile(`${language}.txt`, "utf8", (err, queryTextFileData) => {
         const stringData = dataArray[j];
         // console.log("OLD DATA >>>", stringData);
 
-        // (6236, 114, 6, 'In the Name of Allah','english'),
-        const firstIndex = stringData.indexOf(", '"); // index of 6
-        const secondIndex = stringData.indexOf(`,'${language}')`); // index of "," at start ,'english'
+        // Replace quoted string with other content
+        dataArray[j] = stringData.replace(
+          /'.*?'/,
+          `'${newDataArray[lineIndex]}'`
+        );
 
-        const startIndex =
-          firstIndex == -1 ? stringData.indexOf(",'") : firstIndex;
-        const endIndex =
-          secondIndex == -1
-            ? stringData.indexOf(`, '${language}')`)
-            : secondIndex;
-
-        var updatedLine = `${stringData.slice(0, startIndex)}, '${
-          newDataArray[lineIndex]
-        }'${stringData.slice(endIndex)}`;
-
-        // console.log("UPDATED LINE >>>", updatedLine);
-
-        dataArray[j] = updatedLine;
 
         ++lineIndex;
       }
