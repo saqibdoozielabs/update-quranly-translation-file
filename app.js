@@ -37,7 +37,7 @@ fs.readFile(`${language}.txt`, "utf8", (err, queryTextFileData) => {
 
     let lineIndex = 0;
 
-    let regex = /^INSERT\s+INTO\s+(?:`|'|")TRANSLATION(?:`|'|")/i;
+    let regex = /INSERT\s+INTO\s+(?:`|'|")TRANSLATION(?:`|'|")/i;
 
     for (let j = 0; j < dataArray.length; j++) {
       if (!(regex.test(dataArray[j]) || dataArray[j].length == 0)) {
