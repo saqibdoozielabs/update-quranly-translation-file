@@ -24,7 +24,7 @@
 
 5. Run ```node app.js``` in terminal.
 
-6. Check ```TOTAL LINES IN  ___.txt ___``` print in terminal, shold be equal or greater than 114(chapters) + 6236(verses) = 6350, + may be some empty lines in files.
+6. Check ```TOTAL LINES IN  ___.txt ___``` print in terminal, shold be greater than ```6236```(verses) ```+``` number of this line ```INSERT INTO 'TRANSLATION'``` ```+``` may be some empty lines in files.
 
 7. Show ```NUMBER OF TRANSLATIONS TO UPDATE >>> 6236``` in console.
 
