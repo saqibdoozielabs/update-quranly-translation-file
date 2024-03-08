@@ -18,7 +18,7 @@ fs.readFile(`${language}.txt`, "utf8", (err, queryTextFileData) => {
     }
 
     const jsonData = JSON.parse(updatedFileData);
-    // data type is string and jsonData type is object
+    // updatedFileData type is string and jsonData type is object
 
     const translations = jsonData["translations"];
 
@@ -29,6 +29,8 @@ fs.readFile(`${language}.txt`, "utf8", (err, queryTextFileData) => {
 
       // Remove <sup> tag and its contents
       getText = getText.replace(/<sup[^>]*>.*?<\/sup>/gi, "");
+
+      getText = getText.replace(/'/g, '"');
 
       newDataArray.push(getText);
     }
