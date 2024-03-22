@@ -43,8 +43,10 @@ fs.readFile(`${language}.txt`, "utf8", (err, queryTextFileData) => {
 
     for (let j = 0; j < dataArray.length; j++) {
       if (!(regex.test(dataArray[j]) || dataArray[j].length == 0)) {
-        const stringData = dataArray[j];
+        let stringData = dataArray[j];
         // console.log("OLD DATA >>>", stringData);
+
+        stringData = stringData.replace(/\\''/g, '');
 
         // Replace quoted string with other content
         dataArray[j] = stringData.replace(
