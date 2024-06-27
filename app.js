@@ -48,6 +48,8 @@ fs.readFile(`${language}.txt`, "utf8", (err, queryTextFileData) => {
 
         stringData = stringData.replace(/\\''/g, '');
 
+        stringData = stringData.replace(/''/g, '');
+
         // Replace quoted string with other content
         dataArray[j] = stringData.replace(
           /'.*?'/,
